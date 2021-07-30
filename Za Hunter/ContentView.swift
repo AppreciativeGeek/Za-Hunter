@@ -18,8 +18,16 @@ struct ContentView: View {
             longitudeDelta: 0.05)
     )
     
+    @StateObject var locationManager = LocationManager()
+    @State private var userTrackingMode: MapUserTrackingMode = .follow
+    
     var body: some View {
-        Map(coordinateRegion: $region)
+        Map(
+            coordinateRegion: $region,
+            interactionModes: .all,
+            showsUserLocation: true,
+            userTrackingMode: $userTrackingMode
+        )
     }
 }
 
